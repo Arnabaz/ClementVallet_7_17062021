@@ -1,6 +1,7 @@
 // --- IMPORTS ---
 const http = require("http"); // Import du module http - Voir si on peut utiliser https (requiert un certificat SSL - Se renseigner)
 const app = require("./app"); // Import de app (liaison de l'application avec le serveur)
+require("dotenv").config({path: "./.env"});
 
 // --- FUNCTIONS ----
 // Configuration du port de connexion en fonction de l'environnnement
@@ -19,7 +20,7 @@ const normalizePort = (val) => {
 
 // Ajout d'un port de connexion si non déclaré par l'environnement (méthode manuelle)
 // Si pas de port fourni dans le fichier.env, on écoutera le port 3000
-const port = normalizePort('3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port); // Liaison du port de connexion avec l'application
 
 // Recherche des différentes erreurs avec errorHandler
