@@ -3,6 +3,10 @@
 const express = require("express");
 const db = require("./config/db.config");
 
+// Importation des routes de l'API
+const userRoutes = require("./routes/user");
+const authRoutes = require("./routes/auth-routes");
+
 // --- APP ---
 const app = express();
 
@@ -15,6 +19,10 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+
+// --- ROUTES ---
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 // --- EXPORT ---
 module.exports = app;
