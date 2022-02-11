@@ -23,17 +23,17 @@ const Profile = () => {
     // Déclaration des fonctions
     // Pour récupérer les données de l'utilisateur (pour affichage du profil utilisateur)
     useEffect(() => {
-        if (userRole) {
-            // Si l'URL contient un userId en paramètre, on met cet userId dans la requête get à l'API
-            params.userId ?
-                setUserIdP(params.userId)
-                :
-                // Sinon on récupère le userId de l'admin et on affiche son profil
-                setUserIdP(userId)
-            // Si l'utilisateur n'est pas admin, il n'aura accès qu'à son profil (si on rentre un paramètre en URL, on affiche son profil)
-        } else if (!userRole) {
-            setUserIdP((userId))
-        }
+            if (userRole) {
+                // Si l'URL contient un userId en paramètre, on met cet userId dans la requête get à l'API
+                params.userId ?
+                    setUserIdP(params.userId)
+                    :
+                    // Sinon on récupère le userId de l'admin et on affiche son profil
+                    setUserIdP(userId)
+                // Si l'utilisateur n'est pas admin, il n'aura accès qu'à son profil (si on rentre un paramètre en URL, on affiche son profil)
+            } else if (!userRole) {
+                setUserIdP((userId))
+            }
         axios({
                 method: "get",
                 url: `http://localhost:5150/api/user/${userIdP}`,

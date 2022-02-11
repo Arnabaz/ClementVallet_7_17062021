@@ -12,35 +12,35 @@ import RequireAuth from "./components/RequireAuth"
 // --- APP ---
 const App = () => {
 // Déclaration de variables :
-  let token = localStorage.getItem("token");
+    let token = localStorage.getItem("token");
 
-  // Déclaration de states :
-  const [authContext, setAuthContext] = useState(false);
+    // Déclaration de states :
+    const [authContext, setAuthContext] = useState(false);
 
-  useEffect(() => {
-    if (token) {
-      setAuthContext(true);
-    } else {
-      setAuthContext(false)
-    }
-  }, []);
+    useEffect(() => {
+        if (token) {
+            setAuthContext(true);
+        } else {
+            setAuthContext(false)
+        }
+    }, []);
 
-  return (
-      <AuthContext.Provider value={{authContext, setAuthContext}}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route element={<RequireAuth/>}>
-              <Route path="/feed" element={<Feed/>}/>
-              <Route path="/profile" element={<Profile/>}>
-                <Route path="/profile/:userId" element={<Profile/>}/>
-              </Route>
-              <Route path="/admin" element={<Admin/>}/>
-            </Route>
-          </Routes>
-        </Router>
-      </AuthContext.Provider>
-  )
+    return (
+        <AuthContext.Provider value={{authContext, setAuthContext}}>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route element={<RequireAuth/>}>
+                        <Route path="/feed" element={<Feed/>}/>
+                        <Route path="/profile" element={<Profile/>}>
+                            <Route path="/profile/:userId" element={<Profile/>}/>
+                        </Route>
+                        <Route path="/admin" element={<Admin/>}/>
+                    </Route>
+                </Routes>
+            </Router>
+        </AuthContext.Provider>
+    )
 }
 
 

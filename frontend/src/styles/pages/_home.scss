@@ -22,7 +22,7 @@
       grid-template-areas: "form header header";
     }
   }
-  // Header (Partie avec le titre)
+// Header (Partie avec le titre)
   &-header {
     padding: 25px 0;
     @include font-properties( text, default, 0.75rem, 700);
@@ -103,7 +103,7 @@
       text-align: center;
 
       &#signup-form {
-        padding: 14px 20px 30px 20px;
+      padding: 14px 20px 30px 20px;
       }
 
       &#login-form{

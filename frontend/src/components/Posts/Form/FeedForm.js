@@ -41,7 +41,7 @@ const FeedForm = ({imgSrc, setAddedPost}) => {
                     method: "post",
                     url: `http://localhost:5150/api/post`,
                     headers: {"Authorization": `Bearer ${token}`},
-                    data: postData,
+                data: postData,
                 },
             )
                 .then((response) => {
@@ -63,23 +63,23 @@ const FeedForm = ({imgSrc, setAddedPost}) => {
 
     return (
         <>
-            <form className="feedpage-feedform" action="" method="post" encType="multipart/formData">
-                <label className="feedpage-feedform__label text" htmlFor="post_text">
-                    <img src={`http://localhost:5150/images/profiles/${imgSrc}`} className="feedpage-feedform__img" alt="photo de profil"/>
-                </label>
-                <textarea className="feedpage-feedform__textarea" name="post_text" id="post_text"
-                          placeholder="Ecrivez votre texte ici" onChange={(e) => setPostText(e.target.value)}
-                          value={postText}/>
-                <label className="feedpage-feedform__label image" htmlFor="post_image">
-                    <FontAwesomeIcon icon={faImages} color={postPicture ? "green" : null}/>
-                </label>
-                <input type="file" name="post_image" id="post_image" className="feedpage-feedform__input-file display-none"
-                       accept=".jpg, .jpeg, .png, .webp, .gif" onChange={(e) => handlePicture(e)}/>
-                <button className="feedpage-feedform__button" onClick={submitNewPost}>Envoyer</button>
-            </form>
+        <form className="feedpage-feedform" action="" method="post" encType="multipart/formData">
+            <label className="feedpage-feedform__label text" htmlFor="post_text">
+                <img src={`http://localhost:5150/images/profiles/${imgSrc}`} className="feedpage-feedform__img" alt="photo de profil"/>
+            </label>
+            <textarea className="feedpage-feedform__textarea" name="post_text" id="post_text"
+                      placeholder="Ecrivez votre texte ici" onChange={(e) => setPostText(e.target.value)}
+                      value={postText}/>
+            <label className="feedpage-feedform__label image" htmlFor="post_image">
+                <FontAwesomeIcon icon={faImages} color={postPicture ? "green" : null}/>
+            </label>
+            <input type="file" name="post_image" id="post_image" className="feedpage-feedform__input-file display-none"
+                   accept=".jpg, .jpeg, .png, .webp, .gif" onChange={(e) => handlePicture(e)}/>
+            <button className="feedpage-feedform__button" onClick={submitNewPost}>Envoyer</button>
+        </form>
             {isNotPosted ? <p className="feedpage-feedform__error-message">Veuillez entrer votre message avant de poster</p> : null}
             {postPicture ? <><p className="feedpage-feedform__picture-message">Image prête à être postée. Nom de l'image : {postPicture.name}</p><button className="feedpage-feedform__picture-cancel" onClick={cancelPostPicture}>Retirer l'image</button></> : null}
-        </>
+            </>
     )
 }
 

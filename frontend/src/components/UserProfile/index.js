@@ -207,7 +207,7 @@ const UserProfile = ({userData}) => {
                     <Link to="/feed" className="return-link">Retour vers le fil d'actualités</Link>
                 </>
             ) : null }
-            <p className="profilepage-link__delete" onClick={handleUserDeleteAccount}>Supprimer le compte</p>
+                <p className="profilepage-link__delete" onClick={handleUserDeleteAccount}>Supprimer le compte</p>
 
         </>
     )
