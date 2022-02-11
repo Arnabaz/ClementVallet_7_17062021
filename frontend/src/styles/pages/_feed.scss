@@ -1,0 +1,639 @@
+/* --- PAGE FEED --- */
+.feedpage {
+  @media (min-width: 980px) {
+    padding: 0 50px;
+    background-image: url("/assets/bcg_img.jpg");
+    background-size: cover;
+  }
+
+  &-main {
+    min-height: calc(100vh - 130px);
+    @media (min-width: 980px) {
+      background-image: url("/assets/bcg_img.jpg");
+      background-size: cover;
+      padding: 0 calc((100% - 880px) / 2);
+      border-right: 2px solid $color-primary;
+      border-left: 2px solid $color-primary;
+    }
+  }
+
+  // --- Section du haut (Création de post) ---
+  // Haut de la section du haut (Bonjour Prénom Nom)
+  &-top__section {
+    background-image: url("/assets/bcg_img_feed.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 10px 20px;
+    border-bottom: 1px solid darken($color-tertiary, 10%);
+    box-shadow: 0 1px 8px darken($color-tertiary, 20%);
+    @media (min-width: 520px) {
+      padding: 10px 50px;
+    }
+    @media (min-width: 520px) {
+      padding: 10px calc((100% - 520px) / 2);
+    }
+
+
+    &-header {
+      text-align: center;
+      @include font-properties(text, default, 0.8rem, 500);
+      color: $color-primary;
+      line-height: 30px;
+      margin-bottom: 10px;
+
+      @media(min-width: 520px) {
+        @include font-properties(text, default, 1rem, 700);
+        line-height: 50px;
+      }
+    }
+  }
+
+  // Formulaire de création de post
+  &-feedform {
+    display: grid;
+    grid-template-areas: ". img ." "textarea textarea textarea" "input-file icon-image button";
+    grid-template-columns: 1fr 50px 1fr;
+    grid-template-rows: 70px auto 40px;
+    background-color: white;
+    border: solid 1px $color-primary;
+
+    @media(min-width: 520px) {
+      padding: 0 calc((100% - 420px) / 2);
+    }
+
+    @media (min-width: 980px) {
+      grid-template-areas: "img textarea textarea" "icon-image input-file button";
+      grid-template-columns: 70px 1fr 1fr;
+      grid-template-rows: auto 40px;
+    }
+
+    &__label.text {
+      grid-area: img;
+      justify-self: center;
+      margin: 10px 0 5px 0;
+    }
+
+    &__label.image {
+      grid-area: input-file;
+      margin-left: 15px;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      transition: transform .2s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    &__img {
+      height: 50px;
+      width: 50px;
+      border-radius: 25px;
+      object-fit: cover;
+    }
+
+    textarea {
+      grid-area: textarea;
+      margin: 5px 10px;
+      @include font-properties(text, default, 0.8rem, 500);
+      color: $color-primary;
+      line-height: 15px;
+      text-align: center;
+      border: 1px solid $color-tertiary;
+      border-radius: 5px;
+
+      @media(min-width: 520px) {
+        margin: 5px calc((100% - 400px) / 2);
+      }
+      @media(min-width: 980px) {
+        margin: 10px calc((100% - 350px) / 2) 5px calc((100% - 350px) / 2);
+      }
+
+      &:focus {
+        padding: 5px 0;
+      }
+    }
+
+    &__button {
+      grid-area: button;
+      justify-self: right;
+      padding: 0 20px;
+      margin: 0 10px 5px 0;
+      @include font-properties(text, default, 0.8rem, 500);
+      color: white;
+      line-height: 30px;
+      border:none;
+      background-color: $color-primary;
+      border-radius: 5px;
+      box-shadow: 0 3px 7px darken($color-tertiary, 10%);
+      cursor: pointer;
+
+      @media(min-width: 980px) {
+        margin: 0 0 5px 0;
+      }
+
+      &:hover {
+        transition: all .2s;
+        background-color: $color-secondary;
+      }
+    }
+
+    &__error-message {
+      display: block;
+      padding: 10px 0;
+      @include font-properties(text, default, 0.8rem, 500);
+      color: red;
+      line-height: 15px;
+      text-align: center;
+      background-color: white;
+      border: 1px solid red;
+    }
+
+    &__picture {
+      &-message {
+        display: block;
+        padding: 10px;
+        @include font-properties(text, default, 0.8rem, 500);
+        color: green;
+        line-height: 15px;
+        text-align: center;
+        background-color: white;
+        border: 2px solid green;
+      }
+
+      &-cancel {
+        display: block;
+        padding: 5px;
+        margin: 5px auto;
+        @include font-properties(text, default, 0.8rem, 500);
+        color: white;
+        line-height: 15px;
+        text-align: center;
+        background-color: $color-secondary;
+        border: 2px solid $color-secondary;
+        border-radius: 5px;
+        box-shadow: 0 3px 7px darken($color-tertiary, 10%);
+        cursor: pointer;
+
+        &:hover{
+          transition: all .2s;
+          background-color: white;
+          color: $color-secondary;
+        }
+      }
+    }
+  }
+
+  // --- Section du bas (Fil d'actualités) ---
+  // Titre du fil d'actus
+  &-thread__section {
+    padding-bottom: 10px;
+    @media (min-width: 980px) {
+      background: white;
+    }
+
+    &-title {
+      text-align: center;
+      margin-bottom: -5px;
+      @include font-properties(text, default, 0.8rem, 700);
+      color: darken($color-secondary, 10%);
+      line-height: 50px;
+      background-color: white;
+      border-bottom: 2px solid darken($color-secondary, 10%);
+
+      @media (min-width: 520px) {
+        @include font-properties(text, default, 0.9rem, 700);
+      }
+    }
+  }
+
+  // Post
+  &-post {
+    margin-top: 10px;
+    background-color: white;
+    border-bottom: 1px solid darken($color-tertiary, 5%);
+
+    @media (min-width: 520px) {
+      margin: 10px calc((100% - 520px) / 2) 0 calc((100% - 520px) / 2);
+      border: 1px solid darken($color-tertiary, 5%);
+    }
+
+    &__header {
+      display: grid;
+      padding: 0 20px;
+      grid-template-areas: "img name . delete" "img time . modify";
+      grid-template-columns: 60px 185px auto 25px;
+      grid-template-rows: 40px 40px;
+      border-bottom: 1px solid darken($color-tertiary, 5%);
+
+      img {
+        grid-area: img;
+        margin: 10px 0;
+        height: 60px;
+        width: 60px;
+        border-radius: 30px;
+      }
+
+      h3 {
+        grid-area: name;
+        padding: 10px 10px 0 10px;
+        @include font-properties(text, default, 0.8rem, 700);
+        color: $color-primary;
+        line-height: 25px;
+      }
+    }
+
+    &__date {
+      grid-area: time;
+      padding: 0 10px 10px 10px;
+      @include font-properties(text, default, 0.7rem, 700);
+      color: darken($color-tertiary, 45%);
+      line-height: 25px;
+    }
+
+    &__delete {
+      grid-area: delete;
+      display: block;
+      height: 25px;
+      justify-self: center;
+      color: $color-primary;
+      cursor: pointer;
+      transition: all .2s;
+
+      &:hover {
+        color:$color-secondary;
+        transform: scale(1.2)
+      }
+    }
+
+    &__modify {
+      grid-area: modify;
+      display: block;
+      justify-self: center;
+      height: 25px;
+      color: $color-primary;
+      line-height: 25px;
+      cursor: pointer;
+      transition: all .2s;
+
+      &:hover {
+        color:$color-secondary;
+        transform: scale(1.2)
+      }
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__post {
+      padding: 5px 20px;
+      @include font-properties(text, default, 0.8rem, 200);
+      color: $color-primary;
+      line-height: 25px;
+      border-bottom: 1px solid darken($color-tertiary, 5%);
+
+      &-info {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        @include font-properties(text, default, 0.7rem, 200);
+        color: $color-primary;
+        cursor: default;
+      }
+
+      &-comments {
+        &.enabled {
+          cursor: pointer;
+          transition: all .2s;
+          &:hover {
+            color: $color-secondary;
+            transform: scale(1.2)
+          }
+        }
+      }
+
+      &-actions {
+        @include font-properties(text, default, 0.8rem, 300);
+        color: $color-secondary;
+        line-height: 40px;
+        border-top: 1px solid darken($color-tertiary, 5%);
+        box-shadow: 0 1px 2px $color-tertiary;
+
+        li {
+          display: inline-block;
+          width: 50%;
+          text-align: center;
+          cursor: pointer;
+
+          &:hover {
+            transition: all .2s;
+            background-color: $color-secondary;
+            color: white;
+          }
+        }
+      }
+    }
+
+    // Commentaires
+    &__comment {
+      // Formulaire de création de commentaire
+      &-form {
+        display: grid;
+        grid-template-areas: "img textarea" ". button";
+        grid-template-columns: 50px auto;
+        grid-template-rows: repeat(2, 50px);
+        border-top: 1px solid $color-tertiary;
+        box-shadow: 0 1px 3px darken($color-tertiary, 5px);
+      }
+
+      &-label {
+        grid-area: img;
+        justify-self: center;
+        align-self: center;
+
+        img {
+          height: 30px;
+          width: 30px;
+          border-radius: 15px;
+          border: 1px solid $color-primary;
+        }
+      }
+
+      &-textarea {
+        grid-area: textarea;
+        display: block;
+        padding-left: 10px;
+        margin: 10px 20px 10px 5px;
+        height: 30px;
+        @include font-properties(text, default, 0.8rem, 300);
+        line-height: 30px;
+        border: 1px solid $color-tertiary;
+      }
+
+      &-button {
+        grid-area: button;
+        margin: 5px calc((100% - 50px) / 2) 10px calc((100% - 150px) / 2);
+        @include font-properties(text, default, 0.8rem, 300);
+        color: $color-primary;
+        background-color: white;
+        border: 2px solid $color-primary;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          transition: all .2s;
+          color: white;
+          background-color: $color-primary;
+        }
+      }
+
+      &-error {
+        display: block;
+        padding: 10px 20px;
+        @include font-properties(text, default, 0.8rem, 500);
+        color: red;
+        line-height: 15px;
+        text-align: center;
+        background-color: white;
+        border: 1px solid red;
+      }
+    }
+
+    // Formulaire de modification de post
+    &__update {
+      &-form {
+        padding-bottom: 5px;
+        box-shadow: 0 1px 2px $color-tertiary;
+      }
+
+      &-label {
+        display: block;
+        padding: 10px;
+        @include font-properties(text, default, 0.8rem, 200);
+        color: $color-primary;
+        text-align: center;
+      }
+
+      &-textarea {
+        display: block;
+        padding-left: 10px;
+        width: 100%;
+        height: 30px;
+        @include font-properties(text, default, 0.8rem, 300);
+        line-height: 30px;
+        border: 1px solid $color-tertiary;
+      }
+
+      &-file {
+        display: inline-block;
+        margin-left: 15px;
+        cursor: pointer;
+        transition: transform .2s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+
+      &-input {
+        display: block;
+      }
+
+      &-button {
+        display: inline-block;
+        position: relative;
+        left: calc(100% - 130px);
+        padding: 5px 20px;
+        margin: 5px 0;
+        @include font-properties(text, default, 0.8rem, 500);
+        line-height: 20px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        background-color: $color-primary;
+        cursor: pointer;
+
+        &:hover {
+          transition: all .2s;
+          background-color: $color-secondary;
+        }
+      }
+
+      &-error {
+        display: block;
+        padding: 10px 20px;
+        @include font-properties(text, default, 0.8rem, 500);
+        color: red;
+        line-height: 15px;
+        text-align: center;
+        background-color: white;
+        border: 1px solid red;
+      }
+    }
+  }
+
+  // Thread de commentaires
+  &-comment {
+    padding: 0 20px;
+    border-top: 1px solid $color-tertiary;
+    border-bottom: 1px solid $color-tertiary;
+    box-shadow: 0 1px 2px $color-tertiary;
+    background-color: lighten($color-tertiary, 15%);
+
+    &__header {
+      display: grid;
+      padding: 5px 5px 0 5px;
+      margin-top: 5px;
+      grid-template-areas: "img name name delete" "img time time modify";
+      grid-template-columns: 40px auto auto 20px;
+      grid-template-rows: 25px 25px;
+      background-color: lighten($color-primary, 82%);
+      border-top: 1px solid darken($color-tertiary, 5%);
+      border-left: 1px solid darken($color-tertiary, 5%);
+      border-right: 1px solid darken($color-tertiary, 5%);
+      border-radius: 5px 5px 0 0;
+
+      img {
+        grid-area: img;
+        align-self: center;
+        margin: 5px 0;
+        height: 30px;
+        width: 30px;
+        border-radius: 15px;
+        border: 1px solid $color-primary;
+      }
+
+      h3 {
+        grid-area: name;
+        padding: 0 5px 0 0;
+        align-self: center;
+        @include font-properties(text, default, 0.7rem, 700);
+        color: $color-primary;
+        line-height: 15px;
+      }
+    }
+
+    &__date {
+      grid-area: time;
+      padding: 0 5px 5px 0;
+      align-self: center;
+      @include font-properties(text, default, 0.7rem, 700);
+      color: darken($color-tertiary, 45%);
+      line-height: 15px;
+    }
+
+    &__delete {
+      grid-area: delete;
+      justify-self: center;
+      cursor: pointer;
+      color: $color-primary;
+      transition: all .2s;
+
+      &:hover {
+        color:$color-secondary;
+        transform: scale(1.2)
+      }
+    }
+
+    &__modify {
+      grid-area: modify;
+      justify-self: center;
+      cursor: pointer;
+      color: $color-primary;
+      transition: all .2s;
+
+      &:hover {
+        color:$color-secondary;
+        transform: scale(1.2)
+      }
+    }
+
+    &__comment {
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      @include font-properties(text, default, 0.8rem, 200);
+      color: $color-primary;
+      line-height: 25px;
+      background-color: white;
+      border-left: 1px solid darken($color-tertiary, 5%);
+      border-right: 1px solid darken($color-tertiary, 5%);
+      border-bottom: 1px solid darken($color-tertiary, 5%);
+      border-radius: 0 0 5px 5px;
+      box-shadow: 0 1px 1px lighten($color-tertiary, 5%);
+    }
+
+    &__update {
+      &-form {
+        margin-bottom: 5px;
+        border-left: 1px solid darken($color-tertiary, 5%);
+        border-right: 1px solid darken($color-tertiary, 5%);
+        border-bottom: 1px solid darken($color-tertiary, 5%);
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 1px 1px lighten($color-tertiary, 5%);
+      }
+
+      &-label {
+        display: block;
+        padding: 10px;
+        @include font-properties(text, default, 0.8rem, 200);
+        color: $color-primary;
+        text-align: center;
+      }
+
+      &-textarea {
+        display: block;
+        padding-left: 10px;
+        width: 100%;
+        height: 30px;
+        @include font-properties(text, default, 0.8rem, 300);
+        line-height: 30px;
+        border: 1px solid $color-tertiary;
+      }
+
+      &-button {
+        display: block;
+        padding: 5px 25px;
+        margin: 5px auto;
+        @include font-properties(text, default, 0.8rem, 300);
+        color: $color-primary;
+        border: 2px solid $color-primary;
+        border-radius: 5px;
+        background-color: white;
+        cursor: pointer;
+
+        &:hover {
+          transition: all .2s;
+          color: white;
+          background-color: $color-primary;
+        }
+      }
+
+      &-error {
+        display: block;
+        padding: 10px 20px;
+        @include font-properties(text, default, 0.8rem, 500);
+        color: red;
+        line-height: 15px;
+        text-align: center;
+        background-color: white;
+        border: 1px solid red;
+      }
+    }
+  }
+}
+
+// Icones
+.unlike {
+  background-color: $color-secondary;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    transition: all .2s;
+    background-color: white;
+    color: $color-secondary;
+  }
+}

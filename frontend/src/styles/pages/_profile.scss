@@ -1,0 +1,230 @@
+/* --- PAGE PROFIL --- */
+.profilepage {
+  &-main {
+    min-height: calc(100vh - 130px);
+    padding: 0 20px;
+    @media (min-width: 520px) {
+      padding: 0 50px;
+    }
+    @media(min-width: 980px) {
+      padding: 0;
+      background-image: url("/assets/bcg_img.jpg");
+      background-size: cover;
+    }
+  }
+  &-section {
+    @media(min-width: 980px) {
+      min-height: calc(100vh - 130px);
+      margin: 0 calc((100% - 880px) / 2);
+      background-color: white;
+    }
+  }
+
+  // Titre de la page profil
+  &-title {
+    @include font-properties(text, default, 1.4rem, 700);
+    color: $color-secondary;
+    text-align: center;
+    line-height: 50px;
+  }
+
+  // Formulaire de modification des données de l'utilisateur
+  &-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    &__img {
+      margin: 5px auto;
+      height: 150px;
+      width: 150px;
+      border-radius: 75px;
+      object-fit: contain;
+      transition: all .2s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    &__label {
+      text-align: center;
+      @include font-properties(text, default, 1.1rem, 700);
+      line-height: 40px;
+      color: $color-primary;
+
+      @media (min-width: 520px) {
+        font-size: 1.2rem;
+      }
+
+      &.img {
+        cursor: pointer;
+        margin: 0 calc((100% - 190px) / 2);
+      }
+
+      &[data-error]::after {
+        display: block;
+        content: attr(data-error);
+        @include font-properties(text, default, 0.7rem, 600);
+        color: orange;
+      }
+    }
+
+    &__input {
+      display: inline-block;
+      margin-bottom: 10px;
+      @include font-properties(text, default, 1rem, 200);
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+
+      @media (min-width: 520px) {
+        margin-left: calc((100% - 450px) / 2);
+        margin-right: calc((100% - 450px) / 2);
+      }
+
+      &.img {
+        &::-webkit-file-upload-button {
+          color: green;
+        }
+      }
+      &.email {
+        cursor: default;
+        background-color: $color-tertiary;
+      }
+    }
+
+    &__img {
+      &-message {
+        display: block;
+        padding: 10px;
+        @include font-properties(text, default, 0.8rem, 500);
+        color: green;
+        line-height: 15px;
+        text-align: center;
+        background-color: white;
+        border: 2px solid green;
+
+        @media(min-width: 520px) {
+          margin: 0 calc((100% - 450px) / 2);
+        }
+      }
+
+      &-cancel {
+        display: block;
+        padding: 5px;
+        margin: 5px auto;
+        @include font-properties(text, default, 0.8rem, 500);
+        color: white;
+        line-height: 15px;
+        text-align: center;
+        background-color: red;
+        border: 2px solid $color-secondary;
+        border-radius: 5px;
+        box-shadow: 0 2px 7px darken($color-tertiary, 10%);
+        cursor: pointer;
+
+        &:hover {
+          transition: all .2s;
+          background-color: white;
+          color: $color-secondary;
+        }
+      }
+    }
+    // Bouton de validation du formulaire
+    &__button {
+      display: inline-block;
+      padding: 0 25px;
+      margin: 15px auto;
+      @include font-properties(text, default, 0.9rem, 500);
+      color: white;
+      line-height: 30px;
+      background-color: $color-primary;
+      border-radius: 5px;
+      border: 2px solid $color-primary;
+      box-shadow: 0 3px 7px darken($color-tertiary, 15%);
+      cursor: pointer;
+
+      &:hover {
+        transition: all .2s;
+        background-color: white;
+        color: $color-primary;
+      }
+      @media (min-width: 520px) {
+        font-size: 1rem;
+        line-height: 40px;
+        padding: 0 40px;
+      }
+    }
+    // Message d'erreur
+    &__update-error {
+      display: block;
+      margin: 10px auto;
+      text-align: center;
+      @include font-properties(text, default, 0.8rem, 200);
+      color: red;
+      line-height: 15px;
+    }
+
+  }
+
+  // Lien de suppression du compte
+  &-link__delete {
+    display: inline-block;
+    padding: 0 20px;
+    margin: 30px calc((100% - 177px) / 2);
+    @include font-properties(text, default, 0.9rem, 500);
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    background-color: $color-secondary;
+    border: 2px solid $color-secondary;
+    border-radius: 5px;
+    box-shadow: 0 3px 7px darken($color-tertiary, 15%);
+    cursor: pointer;
+
+    &:hover {
+      transition: all .2s;
+      background-color: white;
+      color: $color-secondary;
+    }
+
+    @media (min-width: 520px) {
+      font-size: 1rem;
+      line-height: 40px;
+      margin: 30px calc((100% - 252px) / 2);
+      padding: 0 50px;
+    }
+  }
+}
+
+// Messages
+.success-message {
+  margin: 10px auto;
+  @include font-properties(text, default, 0.9rem, 500);
+  color: green;
+  text-align: center;
+  line-height: 15px;
+}
+
+
+// Lien de retour vers le fil d'actus
+.return-link {
+  display: block;
+  padding: 0 20px;
+  margin: 10px calc((100% - 250px) / 2);
+  @include font-properties(text, default, 0.9rem, 500);
+  text-align: center;
+  color: white;
+  line-height: 30px;
+  background-color: green;
+  border: 2px solid green;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px darken($color-tertiary, 10%);
+
+  &:hover {
+    transition: all .2s;
+    background-color: white;
+    color: green;
+  }
+}

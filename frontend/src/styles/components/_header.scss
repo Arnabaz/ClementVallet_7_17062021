@@ -1,0 +1,128 @@
+/* --- HEADER --- */
+.header {
+  line-height: 0;
+  background-color: $color-primary;
+  @media (min-width: 980px) {
+    display: flex;
+  }
+}
+
+.logo__link {
+  display: inline-block;
+  padding: 25px 0;
+  margin: 0 calc((100% - 163px) / 2);
+  @media (min-width: 980px) {
+    margin: 0 0 0 50px;
+    display: flex;
+    flex-shrink:0;
+  }
+
+  img {
+    height: 30px;
+    width: auto;
+  }
+}
+
+/* Menu de navigation (menu burger) */
+// Menu Burger (3 barres)
+.bars-button {
+  position: absolute;
+  right: 20px;
+  font-size: 30px;
+  line-height: 30px;
+  width: 30px;
+  color: white;
+  border: none;
+  background-color: transparent;
+  margin-top: 25px;
+  cursor: pointer;
+  transition: transform .2s;
+
+  @media (min-width: 520px) {
+    right: 50px;
+  }
+
+  @media (min-width: 980px) {
+    display: none;
+  }
+  &:hover {
+    color: $color-secondary;
+    transform: scale(1.2);
+  }
+}
+
+// Navigation
+.menu-navbar {
+  background-color: white;
+  width: 100%;
+  display: block;
+  text-align: center;
+  @media (min-width: 980px) {
+    background-color: transparent;
+  }
+
+  &.folded {
+    display: none;
+    @media (min-width: 980px) {
+      display: inline-block;
+      text-align: right;
+    }
+  }
+}
+
+// Items du menu (élement ul)
+.menu-items {
+  @include font-properties(text, default, 1rem, 500);
+  @media (min-width: 980px) {
+    display: flex;
+    justify-content: right;
+    justify-items: center;
+    padding: 0 50px;
+  }
+}
+
+// Item du menu (élément li)
+.menu-item {
+  line-height: 50px;
+  border-bottom: solid 1px $color-primary;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @media (min-width: 980px) {
+    padding: 0 20px;
+    line-height: 80px;
+    border: none;
+  }
+
+  a {
+    display: block;
+    color: $color-primary;
+
+    @media (min-width: 980px) {
+      color: white;
+    }
+  }
+
+  &:hover {
+    transition: all .2s;
+    background-color: $color-secondary;
+
+    a {
+      color: white;
+    }
+  }
+}
+
+// Icones des éléments du menu
+.exit-icon {
+  margin-right: 15px;
+  @media (min-width: 980px) {
+    margin-right: 5px;
+  }
+}
+
+.portrait-icon {
+  margin-right: 20px;
+  @media (min-width: 980px) {
+    margin-right: 5px;
+  }
+}

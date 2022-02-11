@@ -1,0 +1,191 @@
+/* --- PAGE D'ACCUEIL --- */
+.homepage {
+  &-main {
+    min-height: calc(100vh - 130px);
+    background-image: url("/assets/bcg_img.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 0 20px 50px 20px;
+
+    @media (min-width: 520px) {
+      padding: 0 50px 50px 50px;
+    }
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: 42% 58%;
+      grid-template-areas: "form header";
+      background-image: none;
+      padding:0;
+    }
+    @media (min-width: 1440px) {
+      grid-template-columns: 1fr 2fr;
+      grid-template-areas: "form header header";
+    }
+  }
+  // Header (Partie avec le titre)
+  &-header {
+    padding: 25px 0;
+    @include font-properties( text, default, 0.75rem, 700);
+    color: white;
+    line-height: 50px;
+    text-align: center;
+
+    @media (min-width: 520px) {
+      font-size: 1rem;
+    }
+    @media (min-width: 1024px) {
+      grid-area: header;
+      padding: 0 50px;
+      background-image: url("/assets/bcg_img.jpg");
+    }
+    h1 {
+      @media (min-width: 1024px) {
+        padding: calc((100vh - 230px) / 2) 0;
+      }
+    }
+  }
+
+  // Partie formulaire (connexion et inscription)
+  &-form {
+    background-color: white;
+    border: 2px solid $color-primary;
+    margin: 0 calc((100% - 280px) / 2);
+    @media (min-width: 375px) {
+      margin: 0 calc((100% - 325px) / 2);
+    }
+    @media (min-width: 1024px) {
+      grid-area: form;
+      align-self: center;
+      margin: 0 calc((100% - 325px) /2);
+    }
+
+    // En-tête du formulaire (avec une modal pour basculer entre connexion et inscription)
+    &__header {
+      &-container {
+        display: flex;
+        justify-content: space-around;
+
+        h2 {
+          @include font-properties( text, default, 0.9rem, 200);
+          color: $color-primary;
+          line-height: 40px;
+          text-align: center;
+          width: 50%;
+          border: 1px solid $color-tertiary;
+          cursor: pointer;
+
+          &:hover {
+            transition: all .2s;
+            background-color:$color-secondary;
+            color: white;
+          }
+
+          &.active-form {
+            font-weight: 700;
+            color: $color-primary;
+            border-bottom: 0;
+
+            &:hover {
+              transition: none;
+              background-color: white;
+              color: $color-primary;
+            }
+          }
+        }
+      }
+    }
+
+    // Formulaire (Elément)
+    &__form {
+      display: flex;
+      flex-direction: column;
+      padding: 60px 20px 62px 20px;
+      text-align: center;
+
+      &#signup-form {
+        padding: 14px 20px 30px 20px;
+      }
+
+      &#login-form{
+        &[data-error]::after {
+          display: block;
+          content: attr(data-error);
+          color: orange;
+          @include font-properties( text, default, 0.7rem, 600);
+        }
+      }
+
+      &-label {
+        font-family: 'Open sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: $color-primary;
+        line-height: 30px;
+        text-align: center;
+
+        &[data-error]::after {
+          display: block;
+          content: attr(data-error);
+          color: orange;
+          @include font-properties( text, default, 0.7rem, 600);
+        }
+      }
+
+      &-input {
+        @include font-properties( text, default, 0.8rem, 100);
+        text-align: center;
+        color: $color-primary;
+        line-height: 30px;
+        margin-bottom: 50px;
+
+
+        &.signup-form {
+          margin-bottom: 10px;
+        }
+      }
+
+      &-button {
+        @include font-properties( text, default, 0.8rem, 600);
+        text-align: center;
+        color: white;
+        line-height: 30px;
+        background-color: $color-primary;
+        margin: 0 auto 10px auto;
+        padding: 0 25px;
+        border-radius: 25px;
+        border: none;
+        box-shadow: 0 3px 7px darken($color-tertiary, 10%);
+        cursor: pointer;
+
+        &:hover {
+          transition: all .2s;
+          background-color: $color-secondary;
+        }
+
+        &:active {
+
+        }
+
+        &.signup-form{
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+
+  // Message si OK
+  &-message__success {
+    padding: 30px 20px 0 20px;
+    @include font-properties( text, default, 1rem, 500);
+    line-height: 20px;
+    text-align: center;
+    color: green;
+  }
+}
+// Autres éléments
+.red-border {
+  border: solid 2px red;
+}
+.green-border {
+  border: solid 2px green;
+}

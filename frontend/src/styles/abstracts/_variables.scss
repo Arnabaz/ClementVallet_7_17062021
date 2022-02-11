@@ -1,0 +1,27 @@
+/* --- VARIABLES --- */
+// Couleur
+$color-primary: #091F43;
+$color-secondary: #FD2D01;
+$color-tertiary: #D8D8D8;
+
+// Polices
+$font: (
+        text: "Open Sans",
+        default: sans-serif,
+);
+@mixin font-properties(
+  $font-primary,
+   $font-secondary,
+   $font-size,
+    $font-weight
+) {
+  $font-primary: map-get($font, $font-primary);
+  $font-secondary: map-get($font, $font-secondary);
+  font-family: $font-primary, $font-secondary;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+// Media Queries
+
+// Mixins

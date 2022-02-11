@@ -1,0 +1,15 @@
+/* --- FOOTER --- */
+.footer {
+  background-color: $color-primary;
+  padding: 0 20px;
+  @media (min-width: 520px) {
+    padding: 0 50px;
+  }
+
+  p {
+    @include font-properties(text, default, 0.7rem, 100);
+    color: white;
+    text-align: center;
+    line-height: 50px;
+  }
+}
