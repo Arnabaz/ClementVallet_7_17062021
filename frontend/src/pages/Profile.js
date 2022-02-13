@@ -56,6 +56,7 @@ const Profile = () => {
                     </header>
                     <UserProfile
                         userData={userData}
+                        userRole={userRole}
                     />
                 </section>
             </main>

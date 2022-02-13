@@ -4,7 +4,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 // --- COMPOSANT : UserProfile ---
-const UserProfile = ({userData}) => {
+const UserProfile = ({userData, userRole}) => {
     // Déclaration des variables :
     const userId = JSON.parse(localStorage.getItem("user")).userId;
     const token = JSON.parse(localStorage.getItem("user")).token;
@@ -153,9 +153,13 @@ const UserProfile = ({userData}) => {
                 headers: {"Authorization": `Bearer ${token}`},
             })
                 .then(() => {
-                    localStorage.clear();
-                    navigate("/");
-                    console.log("L'utilisateur a bien été supprimé")
+                    if (!params.userId) {
+                        localStorage.clear();
+                        navigate("/");
+                        console.log("L'utilisateur a bien été supprimé")
+                    } else if (params.userId && userRole === 1) {
+                        navigate("/feed");
+                    }
                 })
                 .catch((err) => console.log(err))
         } else {

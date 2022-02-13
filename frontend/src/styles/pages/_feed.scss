@@ -255,7 +255,7 @@
     &__delete {
       grid-area: delete;
       display: block;
-      height: 25px;
+      align-self: center;
       justify-self: center;
       color: $color-primary;
       cursor: pointer;
@@ -271,7 +271,7 @@
       grid-area: modify;
       display: block;
       justify-self: center;
-      height: 25px;
+      align-self: center;
       color: $color-primary;
       line-height: 25px;
       cursor: pointer;

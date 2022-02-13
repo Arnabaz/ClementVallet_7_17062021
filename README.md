@@ -55,7 +55,7 @@ Si le navigateur ne se lance pas automatiquement, rendez-vous sur http://localho
 ### 5. Accéder au projet en tant qu'admin
 
 Pour accéder au projet en tant qu'admin, créer d'abord un utilisateur puis dans la base de données :
-dans la table users, mettez à jour la ligne correspondant à la colonne admin  avec la valeur 1.
+dans la table *users*, mettez à jour la ligne de l'utilisateur nouvellement créé et correspondant à la colonne *is_admin*  avec la valeur *1*.
 
 ---
 
@@ -72,4 +72,3 @@ dans la table users, mettez à jour la ligne correspondant à la colonne admin  
 ## Auteur
 
 Arnabaz - Clément Vallet - 2022
-
