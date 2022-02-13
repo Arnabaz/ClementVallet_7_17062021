@@ -23,8 +23,6 @@ exports.editComment = (req, res, next) => {
     // Récupération des informations du commentaire
     Comment.findOne(req.params.commentId)
         .then((comment) => {
-            // Vérification de l'auteur du commentaire
-
             // Enregistrement des modifications avec commentObject
             let commentData = {
                 comment: req.body.content ? req.body.content : comment.content,

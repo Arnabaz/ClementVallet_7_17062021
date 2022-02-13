@@ -30,9 +30,6 @@ exports.editPost = (req, res, next) => {
     // Récupération des infos du post à modifier
     Post.findOne(req.params.postId)
         .then((post) => {
-            // Vérification de l'auteur du post (ou de l'admin)
-            const isPostOwner = post.UID === res.locals.userId;
-            if (isPostOwner || post.is_admin === 1) {
                 // Enregistrement des modifications dans postObject
                 let postObject = {
                     content: req.body.content ? req.body.content : post.content,
@@ -62,8 +59,6 @@ exports.editPost = (req, res, next) => {
                     .catch((err) => {
                         res.status(400).json({err})
                     })
-            } else throw "Vous n'avez pas les droits pour modifier ce post !";
-
         })
         .catch((err) => res.status(500).json(err))
 }

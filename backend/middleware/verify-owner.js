@@ -12,7 +12,7 @@ const verifyPostOwner = (req, res, next) => {
             .then((userData) => {
                 Post.findOne(req.params.postId)
                     .then((post) => {
-                        if (post.UID === userId || userData.is_admin === 1) {
+                        if (post.user_id === userId || userData.is_admin === 1) {
                             next();
                         } else {
                             throw "Vous n'êtes pas autorisé à modifier ce post.";
